@@ -9,11 +9,14 @@ import { ApiCallService } from '../api-call.service';
   styleUrls: ['./add-new.page.scss'],
 })
 export class AddNewPage implements OnInit {
+  constructor(
+    public router: Router,
+    public alertCtrl: AlertController,
+    public storage: ApiCallService,
+    private toastController: ToastController
+  ) {}
 
-  constructor(public router: Router, public alertCtrl: AlertController, public storage: ApiCallService, private toastController: ToastController) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       header: 'Upload Attachment ',
@@ -49,23 +52,23 @@ export class AddNewPage implements OnInit {
    * @param e //event
    */
   async uploadImage(e: any) {
-    let file = e.target.files[0]
+    let file = e.target.files[0];
     const blobUrl = URL.createObjectURL(file);
 
     const uploadDoc = {
       id: '1',
-      author: "Adith",
+      author: 'Adith',
       download_url: blobUrl,
       width: 720,
       height: 720,
-      url: blobUrl
-    }
+      url: blobUrl,
+    };
 
-    await this.storage.addData('imageData', JSON.stringify(uploadDoc))
-    this.router.navigate(['home'])
+    await this.storage.addData('imageData', JSON.stringify(uploadDoc));
+    this.router.navigate(['home']);
   }
   /**
-   * function- navigates back to gallery 
+   * function- navigates back to gallery
    */
   onBackMob() {
     this.router.navigate(['home']);

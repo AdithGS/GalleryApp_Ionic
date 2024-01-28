@@ -1,24 +1,32 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class=" ion-text-center" color="dark">
+  <ion-toolbar class="ion-text-center" color="dark">
     <ion-button fill="clear" slot="start" (click)="onBackMob()">
-      <ion-icon slot="icon-only" name="arrow-back-outline" color="danger"></ion-icon>
+      <ion-icon
+        slot="icon-only"
+        name="arrow-back-outline"
+        color="danger"
+      ></ion-icon>
     </ion-button>
     <ion-title class="ion-padding">Add New</ion-title>
-    
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-row class="ion-justify-content-center">
     <ion-col size="sm">
-      <ion-button  color="danger" (click)="presentAlert()">
-        Upload Image <ion-icon size="large" name="attach-outline" color="danger"></ion-icon>
+      <ion-button color="danger" (click)="presentAlert()">
+        Upload Image
+        <ion-icon size="large" name="attach-outline" color="danger"></ion-icon>
       </ion-button>
-      <input type="file" #file class="attachment-selector" name="attachment_1"
-                  (change)="uploadImage($event)" style="display: none" accept=".png,.jpg,.jpeg" />
+      <input
+        type="file"
+        #file
+        class="attachment-selector"
+        name="attachment_1"
+        (change)="uploadImage($event)"
+        style="display: none"
+        accept=".png,.jpg,.jpeg"
+      />
     </ion-col>
-  </ion-row> 
-    
-    
-    
+  </ion-row>
 </ion-content>
