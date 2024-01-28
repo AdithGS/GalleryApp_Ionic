@@ -55,9 +55,7 @@ export class GalleryViewPage implements OnInit, OnDestroy {
       }
       // console.log("Image data", this.imageData)
     })
-    // this.appStorage.get('imageData').then((val) =>{
-    //   console.log("Value",val)
-    // })
+    
   }
 
   /**
