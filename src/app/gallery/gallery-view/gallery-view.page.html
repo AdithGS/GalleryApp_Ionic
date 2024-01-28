@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class=" ion-text-center " color="dark">
+    <ion-title class="ion-padding">Image Gallery</ion-title>
+    <ion-toggle class="ion-padding" color="danger" (click)="toggleView()">{{gridView?"Grid View":"List
+      View"}}</ion-toggle>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="noData">
+    <ion-chip class="ion-text-center" *ngIf="imageData?.length == 0">
+      <ion-label>
+        No images present
+      </ion-label>
+    </ion-chip>
+  </div>
+
+  <ion-grid *ngIf="gridView">
+    <ion-row>
+      <ion-col size="6" *ngFor="let item of imageData;" (click)="routeToImage(item)">
+        <ion-card class="ion-text-center">
+          <img [src]="item.download_url">
+          <!-- <ion-img *ngIf="item.url" [src]="item.url" ></ion-img> -->
+          <!-- <img
+            src="https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk="
+            alt="image"> -->
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list class="list_style" *ngIf="!gridView" lines="inset">
+    <ion-item-sliding side="start" *ngFor="let item of imageData" (click)="routeToImage(item)">
+      <ion-item>
+        <ion-card class="full-size-card">
+          <img [src]="item.download_url">
+        </ion-card>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="deleteOnSwipe(item.id,$event)">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab class="float" slot="fixed">
+    <ion-fab-button color="danger" (click)="addnewImage()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-infinite-scroll threshold="15%" (ionInfinite)="onPageScrolled(pageIndex+1, $event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles"
+      loadingText="Loading more data..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
