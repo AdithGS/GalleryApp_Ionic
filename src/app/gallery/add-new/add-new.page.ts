@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { ApiCallService } from '../api-call.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-add-new',
@@ -13,6 +14,7 @@ export class AddNewPage implements OnInit {
     public router: Router,
     public alertCtrl: AlertController,
     public storage: ApiCallService,
+    public localStorage: Storage,
     private toastController: ToastController
   ) {}
 
@@ -52,6 +54,15 @@ export class AddNewPage implements OnInit {
    * @param e //event
    */
   async uploadImage(e: any) {
+    // const image = await Camera.getPhoto({
+    //   quality: 90,
+    //   allowEditing: false,
+    //   resultType: CameraResultType.Uri,
+    // });
+    // console.log('image',image)
+    // let image = image.base64String
+    // this.localStorage.set('imageData',image)
+    // 
     let file = e.target.files[0];
     const blobUrl = URL.createObjectURL(file);
 
