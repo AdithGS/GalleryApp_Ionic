@@ -16,6 +16,9 @@ export class DetailViewPage implements OnInit {
   constructor(public router: Router, public activatedRoute: ActivatedRoute,@Inject(DOCUMENT) private document: Document,) { }
 
   ngOnInit() {
+    
+  }
+  ionViewWillEnter(){
     const queryParams = this.activatedRoute.snapshot.queryParams;
     this.authorName = queryParams['author']
     this.downloadUrl = queryParams['downloadUrl']
